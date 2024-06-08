@@ -1,0 +1,10 @@
+<p>font-size works!</p><br>
+<span>FontComponent 記錄的尺寸值：{{ size }}</span>
+<br>
+<span [style.color]="color">FontComponent 記錄的尺寸值：{{ size }}</span>
+
+<button type="button" [disabled]="size === 16" (click)="onSetFontSize(1)">
+    (Font)增加 1 pt
+  </button>
+  <button type="button" [disabled]="size === 10" (click)="onSetFontSize(-1)">
+    (Font)減少 1 pt
