@@ -1,11 +1,12 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FontSizeComponent} from './font-size/font-size.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FontSizeComponent],
+  imports: [RouterOutlet,FontSizeComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -30,6 +31,11 @@ export class AppComponent {
     alert('app' + num);
     this.fontSize += num;
     alert(this.fontSize);
+  }
+
+  onSizeChange(size: number)
+  {
+    this.fontSize = size;
   }
 
   get fontClass(): string {

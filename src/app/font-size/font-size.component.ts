@@ -15,7 +15,6 @@ export class FontSizeComponent {
   constructor(@Attribute('color') public color: string) {}
 
   onSetFontSize(value: number): void{
-    alert('font');
     this.size += value;
     this.sizeChange.emit(this.size);
   }

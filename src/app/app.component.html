@@ -1,3 +1,11 @@
+<p>Before ng-template</p>
+<div *ngTemplateOutlet="sample"></div>
+<p>After ng-template</p>
+
+<ng-template #sample>
+  <p>Hello World with ng-template</p>
+</ng-template>
+
 <button type="button"
         [disabled]="fontSize === 16"
         (click)="onIncrease(1)" >
@@ -30,4 +38,7 @@
 <p [class]="fontClass">目前文字樣式：{{ fontClass }}</p>
 
 <app-font-size [size]="12" color="blue" (sizeChange) = "onSetFontSize($event)"></app-font-size>
+
+<app-font-size [(size)]="fontSize"></app-font-size>
+
 
