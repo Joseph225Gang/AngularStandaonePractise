@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { AfterViewChecked, AfterViewInit,Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, OnInit  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FontSizeComponent} from './font-size/font-size.component';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   title = 'angular-practise-sample';
   fontSize : number = 12;
   fontSizeType : string | number = 'small';
+  @ViewChild(FontSizeComponent, { static: true })
+  staticSize!: FontSizeComponent;
+
+  ngOnInit(): void {
+    // 要用右上方的 Open in New Window 功能，利用開發者工具觀察
+    console.log('AppComponent - ngOnInit - staticSize', this.staticSize);
+  }
+
+  ngAfterViewInit(): void {
+    console.log('AppComponent - ngAfterViewInit - staticSize', this.staticSize);
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('AppComponent - ngAfterViewChecked');
+  }
 
   onIncrease(num : number)
   {
