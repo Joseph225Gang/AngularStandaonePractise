@@ -1,4 +1,4 @@
-import { ElementRef, Directive, OnInit } from '@angular/core';
+import { ElementRef, Directive, OnInit, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appBsButton]',
@@ -13,5 +13,4 @@ export class BsButtonDirective implements OnInit {
     button.classList.add('btn');
     button.classList.add('btn-primary');
   }
-
-}
+  }

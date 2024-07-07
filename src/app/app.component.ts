@@ -1,8 +1,7 @@
-import { AfterViewChecked, AfterViewInit,Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, OnInit  } from '@angular/core';
+import { AfterViewChecked, AfterViewInit,Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {FontSizeComponent} from './font-size/font-size.component';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +16,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   fontSizeType : string | number = 'small';
   @ViewChild(FontSizeComponent, { static: true })
   staticSize!: FontSizeComponent;
+  counter: number = 0;
 
+  constructor(private changeDetectorRef: ChangeDetectorRef)
+  {
+
+  }
   ngOnInit(): void {
     // 要用右上方的 Open in New Window 功能，利用開發者工具觀察
     console.log('AppComponent - ngOnInit - staticSize', this.staticSize);
@@ -51,6 +55,15 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   onSizeChange(size: number)
   {
     this.fontSize = size;
+  }
+
+  @HostListener('window:keydown.enter', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    this.counter++;
+    this.changeDetectorRef.detectChanges();
+  }
+  resetCounter() {
+    this.counter = 0;
   }
 
   get fontClass(): string {
