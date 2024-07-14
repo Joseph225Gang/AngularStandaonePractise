@@ -2,6 +2,8 @@ import { AfterViewChecked, AfterViewInit,Component, CUSTOM_ELEMENTS_SCHEMA, View
 import { RouterOutlet } from '@angular/router';
 import {FontSizeComponent} from './font-size/font-size.component';
 import { CommonModule } from '@angular/common';
+import { Task } from './Task';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +19,12 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   @ViewChild(FontSizeComponent, { static: true })
   staticSize!: FontSizeComponent;
   counter: number = 0;
-
+  task = new Task({ TaskSn: '001', TaskName: '待辦事項 A', State: 'Finish' });
+  columnDesc = {
+    TaskSn: '編號',
+    TaskName: '名稱',
+    State: '狀態',
+  };
   constructor(private changeDetectorRef: ChangeDetectorRef)
   {
 

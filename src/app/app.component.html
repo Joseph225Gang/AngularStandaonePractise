@@ -51,5 +51,30 @@
 <p appOverHighlight>當游標移到這裡，會改變文字顏色</p>
 <h1>Hello, you have pressed enter {{counter}} number of times!</h1> Press enterkey to increment the counter. <button (click)="resetCounter()">Reset Counter</button>
 
+<div>Upper Case: {{ 'angular'| uppercase}}</div>
+<div>Lower Case: {{ 'angular'| lowercase}}</div>
+<div>Upper Case: {{ 'angular'| titlecase}}</div>
+<div>
+  {{'只會顯示七個字(這裡全部顯示)' | slice: 0:6}}
+</div>
+
+<table border="1">
+  <tr>
+    <th>欄位</th>
+    <th>內容</th>
+  </tr>
+  <tr *ngFor="let t of task | keyvalue">
+    <td>{{ columnDesc[t.key] }}</td>
+    <td>{{ t.value }}</td>
+  </tr>
+</table>
+<div>預設數值顯示: {{3.14159 | number }}</div>
+<div>
+  指定整數與小數長度: {{3.14159 | number: '4.1-5'}}
+</div>
+  
+
+
+
 
 
