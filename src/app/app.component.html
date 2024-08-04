@@ -72,7 +72,35 @@
 <div>
   指定整數與小數長度: {{3.14159 | number: '4.1-5'}}
 </div>
-  
+<div>百分率:{{0.25 | percent: "2.2-4"}}</div>
+
+<div>金額: {{25000 | currency}}</div>
+<div>
+  CAD 貨幣碼: {{25000 | currency: "CAD"}}
+</div>
+<div>
+  貨幣指示格式:{{25000 | currency: "EUR": "symbol"}}
+</div>
+<div>
+UTC時間: {{now | date: "short":"+0000"}}
+</div>
+<app-task *ngFor="let task of tasks | orderBy: 'State'" [task]="task"></app-task>
+
+<table border="1">
+  <tr>
+    <th>單價</th>
+    <th>數量</th>
+  </tr>
+  <tr *ngFor="let item of orderService.details">
+    <td>{{ item.UnitPrice }}</td>
+    <td>{{ item.PurchaseCount }}</td>
+  </tr>
+  <tr>
+    <td>總金額</td>
+    <td>{{ total }}</td>
+  </tr>
+</table>
+
 
 
 

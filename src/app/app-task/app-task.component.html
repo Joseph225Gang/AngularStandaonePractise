@@ -1,0 +1,6 @@
+<span>{{ task.TaskName }}</span>
+<ng-container [ngSwitch]="task.State">
+  <span *ngSwitchCase="'Doing'">進行中</span>
+  <span *ngSwitchCase="'Finish'">已完成</span>
+  <span *ngSwitchDefault>未安排</span>
+</ng-container>
