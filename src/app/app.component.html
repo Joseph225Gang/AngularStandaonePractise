@@ -3,7 +3,9 @@
 <p>After ng-template</p>
 
 <p appOverHighlight>當游標移到這裡，會改變文字顏色</p>
-
+<input type="text" [(ngModel)] = "condition"/>
+{{condition}}
+<br>
 <ng-template #sample>
   <p>Hello World with ng-template</p>
 </ng-template>
@@ -101,7 +103,31 @@ UTC時間: {{now | date: "short":"+0000"}}
   </tr>
 </table>
 
+<form #form="ngForm">
+  <ng-container #user="ngModelGroup" ngModelGroup="user">
+    <div>姓名：<input type="text" name="name" ngModel /></div>
+    <div>Email：<input type="text" name="email" ngModel /></div>
+  </ng-container>
+</form>
+<pre>{{ form.value | json }}</pre>
+<form #form="ngForm">
+  <ng-container #user="ngModelGroup" ngModelGroup="user">
+    <div>姓名 : <input type="text" name="name" ngModel/></div>
+    <div>Email:<input type="text" name="email" ngModel/></div>
+  </ng-container>
+</form>
 
+<form #form="ngForm" (submit)="onSubmit(form)">
+  <div>帳號:<input type="text" name="id" #id="ngModel" ngModel/></div>
+  <div>
+    密碼: <input type="password" name="password" #password="ngModel" ngModel />
+  </div>
+  <div>
+    <button type="reset">重設</button>
+    <button type="submit">登入</button>
+  </div>
+</form>
+<pre>{{form.value | json}}</pre>
 
 
 

@@ -10,6 +10,7 @@ import { OrderDiscountService} from './order-discount.service';
 import { OrderDetail } from './order-detail';
 import { OrderAnniversaryService} from './order-anniversary.service';
 import { IOrderService, ORDER_SERVICE } from './order.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
     TaskName: '名稱',
     State: '狀態',
   };
-  constructor(private changeDetectorRef: ChangeDetectorRef, private taskService: TaskService, @Inject(ORDER_SERVICE) public orderService: IOrderService)
+  condition:string = "";
+  
+  constructor(private changeDetectorRef: ChangeDetectorRef, private taskService: TaskService, public orderService: IOrderService)
   {
     const array1 = [1, 2, 3, 4];
     const initialValue = 0;
@@ -118,4 +121,9 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   get fontClass(): string {
     return `${this.fontSizeType}-font`;
   }
+
+  onSubmit(form: NgForm): void {
+    console.log('表單資料：', form.value);
+  }
+  
 }
