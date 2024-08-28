@@ -10,7 +10,7 @@ import { OrderDiscountService} from './order-discount.service';
 import { OrderDetail } from './order-detail';
 import { OrderAnniversaryService} from './order-anniversary.service';
 import { IOrderService, ORDER_SERVICE } from './order.interface';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -53,6 +53,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
     State: '狀態',
   };
   condition:string = "";
+  readonly formCondition = new FormControl();
   
   constructor(private changeDetectorRef: ChangeDetectorRef, private taskService: TaskService, public orderService: IOrderService)
   {
@@ -126,4 +127,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
     console.log('表單資料：', form.value);
   }
   
+  onSearch(): void{
+    console.log(`查詢條件：${this.formCondition.value}`);
+  }
 }

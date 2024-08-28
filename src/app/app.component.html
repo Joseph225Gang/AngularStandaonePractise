@@ -128,7 +128,78 @@ UTC時間: {{now | date: "short":"+0000"}}
   </div>
 </form>
 <pre>{{form.value | json}}</pre>
+<h4>帳號狀態</h4>
+<pre>是否曾經點選過：{{ id.touched | json }}</pre>
+<pre>是否從未點選過：{{ id.untouched | json }}</pre>
+<hr />
+<h4>表單狀態</h4>
+<pre>是否曾經點選過：{{ form.touched | json }}</pre>
+<pre>是否從未點選過：{{ form.untouched | json }}</pre>
 
+帳號 : <input type="text" name="id" #id="ngModel" ngModel minlength="8" required/>
+<ng-container *ngIf="id.touched">
+  <span *ngIf="id.hasError('required')">
+    帳號為必填欄位
+  </span>
+  <span *ngIf="id.hasError('minlength')">
+    最少要{{id.errors.minlength.requiredLength}}字元
+  </span>
+</ng-container>
 
+帳號 : <input type="text" name="emialId" #id="ngModel" ngModel minlength="8" required/>
+<ng-container *ngIf="id.touched">
+  <span *ngIf="id.hasError('email')">
+    帳號應符合email格式
+  </span>
+</ng-container>
 
+密碼 : <input type="password" name="password" #password="ngModel" ngModel pattern="^[a-zA-Z]"/>
+<ng-container *ngIf="password.touched">
+  <span *ngIf="password.hasError('pattern')">
+    密碼只接受英文字母
+  </span>
+</ng-container>
+
+<form #form="ngForm">
+  <div>
+    單價：<input
+      type="text"
+      name="price"
+      #price="ngModel"
+      ngModel
+      appDecimalValidator
+      [digitLength]="2"
+      [scaleLength]="1"
+    />
+    <ng-container *ngIf="price.touched">
+      <span *ngIf="price.hasError('decimal')">
+        單價應為 {{ price.errors.decimal.digitLength }} 位整數位與
+        {{ price.errors.decimal.scaleLength }} 位整數位的數值
+      </span>
+    </ng-container>
+  </div>
+</form>
+
+<form #form="ngForm">
+  <div>
+    單價 : <input
+      type="text"
+      name="price"
+      ngModel
+      appDecimalValidator
+      [digitLength]="2"
+      [scaleLength]="1"
+    />
+    <ng-container *ngIf="price.touched">
+      <span *ngIf="price.hasError('decimal')">
+        單價應為 {{ price.errors.decimal.digitLength }}位整數位與
+        {{ price.errors.decimal.scaleLength}} 位整位數的數值
+      </span>
+    </ng-container>
+  </div>
+</form>
+查詢條件：<input type="text" [formControl]="condition" />
+<button typte="button" (click)="onSearch()">查詢</button>
+查詢條件 : <input type="text" [formControl]="formCondition"/>
+<button type="button" (click)="onSearch()">查詢</button>
 

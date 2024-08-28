@@ -9,3 +9,19 @@
 .biggest-font{
     font-size: 16pt;
 }
+
+form.ng-untouched{
+    border:solid 1px blue;
+}
+
+form.ng-touched{
+    border:solid 1px red;
+}
+
+input.ng-untouched{
+    border:solid 2px blueviolet;
+}
+
+input.ng-touched{
+    border: solid 2px coral;
+}
