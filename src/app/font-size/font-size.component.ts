@@ -1,4 +1,5 @@
 import { Attribute, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-font-size',
@@ -14,7 +15,7 @@ export class FontSizeComponent implements OnChanges{
 
   @Output() stringChange = new EventEmitter<string>();
 
-  constructor(@Attribute('color') public color: string) {}
+  constructor(@Attribute('color') public color: string, private router: Router) {}
 
   onSetFontSize(value: number): void{
     this.size += value;
@@ -24,5 +25,10 @@ export class FontSizeComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
       if(changes.size)
         this.stringChange.emit(`${changes.size.currentValue}pt`);
+    }
+
+
+    onCancel(): void {
+      this.router.navigateByUrl('tasks');
     }
 }

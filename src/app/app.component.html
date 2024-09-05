@@ -202,4 +202,28 @@ UTC時間: {{now | date: "short":"+0000"}}
 <button typte="button" (click)="onSearch()">查詢</button>
 查詢條件 : <input type="text" [formControl]="formCondition"/>
 <button type="button" (click)="onSearch()">查詢</button>
+<div [formGroup]="form">
+  <div>
+    帳號: <input type="text" formControlName="id"/>
+    <ng-container *ngIf="id.touched">
+      <span *ngIf="id.hasError('required')">帳號為必填欄位</span>
+    </ng-container>
+  </div>
+  <div>
+    密碼: <input type="password" formControlName="password"/>
+  </div>
+  <div>
+    <button type="reset">重設</button>
+    <button type="submit">登入</button>
+  </div>
+</div>
+<h1>Angular Router App</h1>
+<nav>
+  <ul>
+    <li><a routerLink="/child-component'" routerLinkActive="active" ariaCurrentWhenActive="page">Child Component</a></li>
+    <li><a routerLink="/font-size" routerLinkActive="active" ariaCurrentWhenActive="page">Font Size</a></li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
 

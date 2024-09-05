@@ -10,7 +10,7 @@ import { OrderDiscountService} from './order-discount.service';
 import { OrderDetail } from './order-detail';
 import { OrderAnniversaryService} from './order-anniversary.service';
 import { IOrderService, ORDER_SERVICE } from './order.interface';
-import { NgForm, FormControl } from '@angular/forms';
+import { NgForm, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
   condition:string = "";
   readonly formCondition = new FormControl();
   
-  constructor(private changeDetectorRef: ChangeDetectorRef, private taskService: TaskService, public orderService: IOrderService)
+  constructor(private changeDetectorRef: ChangeDetectorRef, private taskService: TaskService, @Inject('isFactory')public orderService: IOrderService, private fb: FormBuilder)
   {
     const array1 = [1, 2, 3, 4];
     const initialValue = 0;
@@ -70,6 +70,13 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked{
     }
 
   }
+
+  readonly form = this.fb.group({
+    id: this.fb.control('', { validators: [Validators.required] }),
+    password: this.fb.control(''),
+  });
+
+  
   ngOnInit(): void {
     // 要用右上方的 Open in New Window 功能，利用開發者工具觀察
     console.log('AppComponent - ngOnInit - staticSize', this.staticSize);
